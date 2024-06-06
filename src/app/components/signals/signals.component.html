@@ -1,0 +1,56 @@
+<div class="container">
+  <h3>Signal and Writable Signals </h3>
+  @if(count() !== 5) {
+  <p>{{count()}} </p>
+
+  <div class="subcontainer">
+    @if(doubleValue()) {
+      <button class="double" (click)="setDouble(false)">Disable Double</button> 
+      <p> Double count {{double()}}</p>
+    } @else {
+      <button class="double" (click)="setDouble(true)">Enable Double</button>
+    }  
+    
+  </div>
+  
+  <div class="buttons">
+    <button (click)="increase()">Increase it (reach 5 to show the accounts)!</button>
+    <button (click)="reset()">Reset</button>
+  </div>  
+
+
+  <h3>Signal and Inputs / New Output</h3>
+  <app-dumb [name]="author" (onNameChange)="handleNameChange($event)"></app-dumb>
+  }
+
+<!-- DEFERS -->
+@else if(count() === 5) {
+  <div class="accounts-list">
+    @defer {
+      @for(account of accounts(); track account.id) {
+        <mat-card class="account-card">
+          <mat-card-header>
+            <mat-card-title>{{ account.name }}</mat-card-title>
+            <mat-card-subtitle>{{ account.currency }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Amount: {{ account.amount | currency: account.currency }}</p>
+            <p>Date: {{ account.date }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button (click)="openDetail(account)">Details</button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    } @placeholder (minimum 500ms) {
+      <div class="placeholder-content">
+        <p>Loading accounts...</p>
+      </div>
+    } @loading (after 100ms; minimum 1s) {
+      <div class="loading-spinner">
+        <p>Loading...</p>
+      </div>
+    }
+  </div>
+}
+</div>

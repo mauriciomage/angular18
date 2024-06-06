@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Account Details</h2>
+<mat-dialog-content>
+  <p><strong>Account Number:</strong> {{ data.detail.accountNumber }}</p>
+  <p><strong>Account Type:</strong> {{ data.detail.accountType }}</p>
+  <p><strong>Branch:</strong> {{ data.detail.branch }}</p>
+  <h3>Transactions:</h3>
+  <ul>
+    @for(item of data.detail.transactions; track item.id) {
+    <li>
+      {{ item.date }} - {{ item.description }}: {{ item.amount | currency:data.currency }}
+    </li>
+  }
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

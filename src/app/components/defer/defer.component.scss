@@ -1,0 +1,31 @@
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
+}
+
+.placeholder-content {
+  color: #bbb; /* Placeholder color */
+}
+
+.loading-spinner {
+  color: #888; /* Loading spinner color */
+}
+
+.deferred-content {
+  color: #fff; /* Final content color */
+}

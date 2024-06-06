@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Deferred Content Example</h1>
+  
+    <!-- Usando @defer con @placeholder y @loading -->
+    @defer {
+      <div class="deferred-content">
+        <p>Large component content</p>
+      </div>
+    }
+     @placeholder (minimum 500ms) {
+      <div class="placeholder-content">
+        <p>Placeholder content</p>
+      </div>
+    } 
+
+    @loading (after 100ms; minimum 5s) {
+      <div class="loading-spinner">
+        <p>Loading...</p>
+      </div>
+    }
+    
+  </div>
+  
