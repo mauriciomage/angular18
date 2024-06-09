@@ -1,8 +1,9 @@
 import { Component, signal, WritableSignal, Signal, computed, effect, EffectRef } from '@angular/core';
-import { mockBankAccounts } from '../../mock/data.mock';
+import { mockBankAccounts, mockUsers } from '../../mock/data.mock';
 import { IAccount } from '../../interfaces/account.interface';
 import { DetailsComponent } from '../details/details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { IUser } from '../../interfaces/user.interface';
 
 
 @Component({
@@ -13,9 +14,19 @@ import { MatDialog } from '@angular/material/dialog';
 export class SignalsComponent {
   public title = 'angular18';
   public author = 'Mauricio';
+  public accounts: WritableSignal<IAccount[]> = signal(mockBankAccounts);
+  users: IUser[] = [
+    { id: 1, name: 'marcel', lastName: 'scott', username: 'michael.scott' },
+    { id: 2, name: 'dwight', lastName: 'schrute', username: 'dwight.schrute' },
+    { id: 3, name: 'angela', lastName: 'martin', username: 'angela.martin' },
+    { id: 4, name: 'jim', lastName: 'halpert', username: 'jim.halpert' },
+  ];
   public doubleValue = signal(false);
   public count: WritableSignal<number> = signal(0);
-  public accounts: WritableSignal<IAccount[]> = signal(mockBankAccounts)
+  public test = signal('whatever');
+
+  public displayUsers: boolean = true;
+  
   public double: Signal<number> = computed(() => {
     if (this.doubleValue() === true) {
       return this.count() * 2;
@@ -23,6 +34,7 @@ export class SignalsComponent {
       return this.count();
     }
   });
+  
 
   public effect: EffectRef;
 
@@ -56,9 +68,9 @@ export class SignalsComponent {
     this.doubleValue.update(() => enable);
   }
 
-  public handleNameChange(name: string): void {
-    console.log('name changed', name);
-    this.author = name;
+  public handleDisplayChange(display: boolean): void {
+    console.log(display);
+    this.displayUsers = display;
   }
 
   public openDetail(account: any): void {
@@ -67,6 +79,19 @@ export class SignalsComponent {
       data: account
     });
 
+  }
+
+  addUser() {
+    this.users = [
+      {
+        id: 5,
+        name: 'mauricio',
+        lastName: 'mage',
+        username: 'mauri.mage',
+      },
+      ...this.users,
+    ];
+    console.log('Current Users', this.users);
   }
 
   onDestroy(): void {

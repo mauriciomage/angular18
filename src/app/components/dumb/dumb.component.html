@@ -1,4 +1,24 @@
-<p>Name: {{name()}}</p>
-<p>Age: {{age()}}</p>
 
-<input placeholder="Change the name and press enter..." (keydown.enter)="onEnter($event)"/>
+<div class="container">
+    <button mat-button (click)="hideUsers()">Hide Users</button>
+    <input (input)="updateQuery($event)" placeholder="Start typing..." />
+
+    <mat-list role="list">
+        
+      <!-- angular 17 v -->
+
+      @for (user of filteredUsers(); track user.id) {
+          <mat-list-item>
+              {{ user.displayName }}
+          </mat-list-item>
+        }
+        
+        <!-- old version -->
+        <!-- @for (user of filteredUsers(); track user.id) {
+          <mat-list-item>
+              {{ user.name }} {{ user.lastName }}
+          </mat-list-item>
+        } -->
+    </mat-list>
+    
+</div>

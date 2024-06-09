@@ -20,7 +20,11 @@
 
 
   <h3>Signal and Inputs / New Output</h3>
-  <app-dumb [name]="author" (onNameChange)="handleNameChange($event)"></app-dumb>
+  
+    @if (displayUsers) {
+      <button (click)="addUser()">Add Andy</button>
+      <app-dumb [users]="users" (displayUsers)="handleDisplayChange($event)"></app-dumb>
+    }
   }
 
 <!-- DEFERS -->
@@ -42,11 +46,7 @@
           </mat-card-actions>
         </mat-card>
       }
-    } @placeholder (minimum 500ms) {
-      <div class="placeholder-content">
-        <p>Loading accounts...</p>
-      </div>
-    } @loading (after 100ms; minimum 1s) {
+    }  @loading (minimum 500ms) {
       <div class="loading-spinner">
         <p>Loading...</p>
       </div>

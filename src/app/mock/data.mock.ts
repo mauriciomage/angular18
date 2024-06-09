@@ -1,4 +1,5 @@
 import { IAccount } from '../interfaces/account.interface';
+import { IUser } from '../interfaces/user.interface';
 
 export const mockBankAccounts: IAccount[] = [
   {
@@ -87,3 +88,21 @@ export const mockBankAccounts: IAccount[] = [
       }
   }
 ];
+
+export const mockUsers: IUser[] = [
+    {
+        id: 1,
+        name: 'mauricio',
+        lastName: 'mage',
+    },
+    {
+        id: 2,
+        name: 'carlos',
+        lastName: 'ferrerira',
+    },
+    {
+        id: 3,
+        name: 'sean',
+        lastName: 'back',
+    }
+]
